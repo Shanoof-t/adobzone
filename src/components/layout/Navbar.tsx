@@ -3,7 +3,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Camera, Mail, MessageCircle, X } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { getWhatsAppLink } from "@/lib/whatsapp";
 import { FaInstagram } from "react-icons/fa";
@@ -14,32 +15,69 @@ const NAV_LINKS = [
   { label: "Blog", href: "/blog" },
 ];
 
+function Logo() {
+  return (
+    <Link
+      href="/"
+      className="flex h-12 items-center justify-center"
+      aria-label="Go to homepage"
+    >
+      <span className="hidden h-full items-center sm:flex">
+        <Image
+          src="/logo-light-notag.svg"
+          alt="Adobzone Logo"
+          width={160}
+          height={45}
+          priority
+          className="block h-8 w-auto object-contain sm:h-9 md:h-10"
+        />
+      </span>
+      <span className="flex h-full items-center sm:hidden">
+        <Image
+          src="/logo-icon.svg"
+          alt="Adobzone Logo Icon"
+          width={36}
+          height={36}
+          priority
+          className="block h-9 w-auto object-contain"
+        />
+      </span>
+    </Link>
+  );
+}
+
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 24);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "border-b border-white/10 bg-black/25 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.15)]"
+          : "bg-transparent"
+      }`}
+    >
       <Container className="flex items-center justify-between py-5 sm:py-6 lg:py-7">
-        <a
-          href="/"
-          className="inline-flex items-center"
-          aria-label="Go to homepage"
-        >
-          <Image
-            src="/logo-full.png"
-            alt="Adobzone Logo"
-            width={170}
-            height={48}
-            className="h-10 w-auto sm:h-12"
-          />
-        </a>
+        <Logo />
 
         <button
           type="button"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((value) => !value)}
-          className="grid h-12 w-12 place-items-center rounded-full transition-all duration-200 "
+          className="grid h-12 w-12 place-items-center rounded-full transition-all duration-200"
         >
           <span className="grid grid-cols-2 gap-3" aria-hidden="true">
             {Array.from({ length: 4 }).map((_, index) => (
@@ -63,19 +101,7 @@ export function Navbar() {
           >
             <Container className="flex h-full flex-col pt-5 sm:pt-6 lg:pt-7">
               <div className="mb-10 flex items-center justify-between">
-                <a
-                  href="/"
-                  className="inline-flex items-center"
-                  aria-label="Go to homepage"
-                >
-                  <Image
-                    src="/logo-full.png"
-                    alt="Adobzone Logo"
-                    width={170}
-                    height={48}
-                    className="h-10 w-auto sm:h-12"
-                  />
-                </a>
+                <Logo />
 
                 <button
                   type="button"

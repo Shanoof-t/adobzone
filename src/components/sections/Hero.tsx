@@ -394,7 +394,7 @@ export function Hero() {
 
               <a
                 href="#services"
-                className="group inline-flex items-center gap-4 rounded-full bg-[var(--color-highlight)] px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-black transition-all duration-300 hover:-translate-y-1"
+                className="group inline-flex items-center gap-4 rounded-full bg-[var(--color-highlight)] px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-black transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(249,133,28,0.35)]"
               >
                 <span>
                   Explore our work
