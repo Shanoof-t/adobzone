@@ -8,9 +8,11 @@ import { useEffect, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { getWhatsAppLink } from "@/lib/whatsapp";
 import { FaInstagram } from "react-icons/fa";
+import { FaMeta } from "react-icons/fa6";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
   { label: "About Us", href: "/about" },
   { label: "Blog", href: "/blog" },
 ];
@@ -62,34 +64,37 @@ export function Navbar() {
   }, []);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-white/10 bg-black/25 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.15)]"
-          : "bg-transparent"
-      }`}
-    >
-      <Container className="flex items-center justify-between py-5 sm:py-6 lg:py-7">
-        <Logo />
+    <header className="fixed inset-x-0 top-0 z-50">      
+      <div
+        className={`transition-all duration-300 ${
+          scrolled
+            ? "border-b border-white/10 bg-black/25 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.15)]"
+            : "bg-transparent"
+        }`}
+      >
+        <Container className="flex items-center justify-between py-5 sm:py-6 lg:py-7">
+          <Logo />
 
-        <button
-          type="button"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          onClick={() => setOpen((value) => !value)}
-          className="grid h-12 w-12 place-items-center rounded-full transition-all duration-200"
-        >
-          <span className="grid grid-cols-2 gap-3" aria-hidden="true">
-            {Array.from({ length: 4 }).map((_, index) => (
-              <span
-                key={index}
-                className={`h-2 w-2 rounded-full ${open ? "bg-white" : "bg-highlight"}`}
-              />
-            ))}
-          </span>
-        </button>
-      </Container>
+          <button
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((value) => !value)}
+            className="grid h-12 w-12 place-items-center rounded-full transition-all duration-200"
+          >
+            <span className="grid grid-cols-2 gap-3" aria-hidden="true">
+              {Array.from({ length: 4 }).map((_, index) => (
+                <span
+                  key={index}
+                  className={`h-2 w-2 rounded-full ${open ? "bg-white" : "bg-highlight"}`}
+                />
+              ))}
+            </span>
+          </button>
+        </Container>
+      </div>
 
+      {/* Fullscreen mobile menu — sibling of the blurred wrapper above, not a descendant of it */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -97,7 +102,7 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed inset-0 z-40 flex flex-col bg-black/95"
+            className="fixed inset-0 z-40 flex flex-col bg-black/95 h-full"
           >
             <Container className="flex h-full flex-col pt-5 sm:pt-6 lg:pt-7">
               <div className="mb-10 flex items-center justify-between">
@@ -163,7 +168,7 @@ export function Navbar() {
 
                     <div className="flex items-center gap-3">
                       <a
-                        href="https://instagram.com"
+                        href="https://instagram.com/adobzone"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Instagram"
@@ -171,28 +176,19 @@ export function Navbar() {
                       >
                         <FaInstagram className="h-4 w-4" />
                       </a>
-                      <a
-                        href="https://instagram.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Instagram"
-                        className="grid h-10 w-10 place-items-center rounded-full border border-white/15 bg-white/5 text-white transition-colors hover:border-[var(--color-highlight)] hover:text-[var(--color-highlight)]"
-                      >
-                        <Camera className="h-4 w-4" />
-                      </a>
 
                       <a
-                        href="https://facebook.com"
+                        href="https://facebook.com/adobzone"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Facebook"
                         className="grid h-10 w-10 place-items-center rounded-full border border-white/15 bg-white/5 text-white transition-colors hover:border-[var(--color-highlight)] hover:text-[var(--color-highlight)]"
                       >
-                        <MessageCircle className="h-4 w-4" />
+                        <FaMeta className="h-4 w-4" />
                       </a>
 
                       <a
-                        href="mailto:fontspellingia@gmail.com"
+                        href="mailto:adobzone@gmail.com"
                         aria-label="Email"
                         className="grid h-10 w-10 place-items-center rounded-full border border-white/15 bg-white/5 text-white transition-colors hover:border-[var(--color-highlight)] hover:text-[var(--color-highlight)]"
                       >

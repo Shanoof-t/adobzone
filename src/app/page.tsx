@@ -1,11 +1,13 @@
 import { ClientsSection } from "@/components/sections/ClientsSection";
 import { Hero } from "@/components/sections/Hero";
+import { ServicesGrid } from "@/components/sections/ServicesGrid";
 
 export default function Home() {
   return (
     <>
       <Hero />
       <ClientsSection />
+      <ServicesGrid />
     </>
   );
 }

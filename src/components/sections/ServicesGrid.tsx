@@ -1,55 +1,78 @@
-import Image from "next/image";
+"use client";
+
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+
 import { services } from "@/data/services";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { getWhatsAppLink } from "@/lib/whatsapp";
+import { StarsGalaxy } from "../ui/StarsGalaxy";
+import { ServiceCard } from "./ServiceCard";
 
-const sizeClasses = {
-  sm: "md:col-span-3",
-  md: "md:col-span-4",
-  lg: "md:col-span-6",
+type ServicesGridProps = {
+  limit?: number;
 };
 
-export function ServicesGrid() {
-  return (
-    <Section className="bg-[var(--color-base)]">
-      <Container>
-        <div className="mb-10 flex items-end justify-between gap-4">
-          <div>
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-[var(--color-primary)]/70">What we print</p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.07em] text-[var(--color-primary)] sm:text-5xl">Creative solutions for every touchpoint</h2>
-          </div>
-        </div>
+export function ServicesGrid({ limit = 7 }: ServicesGridProps) {
+  const visibleServices = limit >= services.length ? services : services.slice(0, limit);
 
-        <div className="grid gap-5 md:grid-cols-12">
-          {services.map((service) => (
-            <Link
-              key={service.id}
-              href={getWhatsAppLink(service.name)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`group relative overflow-hidden rounded-[1.5rem] border border-[var(--color-primary)]/10 bg-[var(--color-base)] md:col-span-3 ${sizeClasses[service.size ?? "sm"]}`}
-            >
-              <div className="relative overflow-hidden">
-                <Image
-                  src={service.image}
-                  alt={service.name}
-                  width={1000}
-                  height={700}
-                  className="h-72 w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-              <div className="space-y-3 p-5">
-                <div className="flex items-center justify-between gap-3">
-                  <h3 className="text-xl font-semibold tracking-[-0.05em] text-[var(--color-primary)]">{service.name}</h3>
-                  <ArrowUpRight className="text-[var(--color-accent)] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" size={18} />
-                </div>
-                <p className="text-sm leading-6 text-[var(--color-ink)]/70">{service.description}</p>
-                <span className="inline-block h-0.5 w-0 bg-[var(--color-accent)] transition-all duration-300 group-hover:w-full" />
-              </div>
-            </Link>
+  return (
+    <Section
+      id="services"
+      className="relative overflow-hidden bg-black py-12 sm:py-16 lg:py-20"
+    >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+      >
+        <StarsGalaxy
+          stars={120}
+          speed={0.45}
+          twinkle={0.5}
+          size={1.1}
+          background="transparent"
+        />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.18)_35%,rgba(0,0,0,0.72)_100%)]" />
+      </div>
+
+      {/* Header only */}
+      <Container className="relative z-10 max-w-[1440px]">
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-10 flex flex-col gap-5 lg:mb-14 lg:flex-row lg:items-end lg:justify-between"
+        >
+          <div className="max-w-4xl space-y-3">
+            <div>
+              <h2 className="text-[clamp(2rem,3vw,4rem)] font-medium leading-[0.9] text-white">
+                Our Services
+              </h2>
+            </div>
+
+            <div>
+              <p className="text-base leading-relaxed text-white/60 sm:text-lg">
+                We are a full-service digital agency that builds immersive user
+                experiences. Our team creates exceptional visualization and
+                thought-out functionality.
+              </p>
+            </div>
+          </div>
+
+          <Link
+            href="/services"
+            className="inline-flex w-fit items-center justify-center rounded-full border border-[var(--color-highlight)]/30 bg-[var(--color-highlight)] px-6 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-black transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(249,133,28,0.35)]"
+          >
+            See all services
+            <ArrowRight size={14} className="ml-2" />
+          </Link>
+        </motion.div>
+
+        {/* Full-width service cards */}
+        <div className="relative z-10 flex flex-col gap-0">
+          {visibleServices.map((service) => (
+            <ServiceCard key={service.id} service={service} />
           ))}
         </div>
       </Container>

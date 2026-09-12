@@ -45,7 +45,7 @@ export function ClientsSection() {
         >
           <div className="max-w-4xl flex-col space-y-3">
             <div>
-              <h2 className="text-[clamp(3rem,5vw,6rem)] font-semibold leading-[0.9] tracking-[-0.08em] text-white">
+              <h2 className="text-[clamp(2rem,3vw,4rem)] font-medium leading-[0.9] text-white">
                 Our Clients
               </h2>
             </div>

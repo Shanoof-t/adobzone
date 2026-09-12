@@ -58,15 +58,10 @@ function InteractiveText({
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <span
-      className={className}
-      onMouseLeave={() => setHoveredIndex(null)}
-    >
+    <span className={className} onMouseLeave={() => setHoveredIndex(null)}>
       {Array.from(text).map((char, index) => {
         const distance =
-          hoveredIndex === null
-            ? Infinity
-            : Math.abs(index - hoveredIndex);
+          hoveredIndex === null ? Infinity : Math.abs(index - hoveredIndex);
 
         let weight = 400;
 
@@ -131,14 +126,12 @@ function AnimatedHeroText() {
       className="hidden items-center justify-center lg:flex"
     >
       <div className="relative w-full max-w-lg">
-
         {/* Background number */}
         <div className="pointer-events-none absolute -right-8 -top-20 select-none text-[12rem] font-bold leading-none tracking-[-0.08em] text-white/[0.025]">
           01
         </div>
 
         <div className="relative">
-
           {/* Small label */}
           <div className="mb-8 flex items-center gap-4">
             <div className="h-px w-10 bg-[var(--color-highlight)]" />
@@ -213,9 +206,8 @@ function AnimatedHeroText() {
             }}
             className="mt-7 max-w-md text-sm leading-relaxed text-white/45"
           >
-            We transform ideas into visual experiences that
-            make businesses look distinctive, memorable, and
-            ready to be noticed.
+            We transform ideas into visual experiences that make businesses look
+            distinctive, memorable, and ready to be noticed.
           </motion.p>
 
           {/* Counter */}
@@ -254,18 +246,14 @@ export function Hero() {
     mass: 0.8,
   });
 
-  const handlePointerMove = (
-    event: React.PointerEvent<HTMLElement>,
-  ) => {
+  const handlePointerMove = (event: React.PointerEvent<HTMLElement>) => {
     const rect = sectionRef.current?.getBoundingClientRect();
 
     if (!rect) return;
 
-    const px =
-      ((event.clientX - rect.left) / rect.width - 0.5) * 26;
+    const px = ((event.clientX - rect.left) / rect.width - 0.5) * 26;
 
-    const py =
-      ((event.clientY - rect.top) / rect.height - 0.5) * 26;
+    const py = ((event.clientY - rect.top) / rect.height - 0.5) * 26;
 
     x.set(px);
     y.set(py);
@@ -283,7 +271,6 @@ export function Hero() {
       onPointerLeave={handlePointerLeave}
       className="relative h-screen overflow-hidden bg-black"
     >
-
       {/* ========================================
           BACKGROUND
       ======================================== */}
@@ -309,7 +296,6 @@ export function Hero() {
 
       <Container className="relative z-10 flex h-full items-center">
         <div className="grid w-full items-center gap-16 lg:grid-cols-[1.25fr_0.75fr]">
-
           {/* ========================================
               LEFT SIDE
           ======================================== */}
@@ -320,7 +306,6 @@ export function Hero() {
             animate="show"
             className="max-w-5xl"
           >
-
             {/* Small label */}
 
             {/* <motion.div
@@ -339,20 +324,13 @@ export function Hero() {
             ======================================== */}
 
             <h1 className="font-sans text-[clamp(4rem,10vw,8.5rem)] font-light leading-[0.90] tracking-[-0.085em] text-white">
-
               {/* Your */}
-              <motion.span
-                variants={item}
-                className="block"
-              >
+              <motion.span variants={item} className="block">
                 <InteractiveText text="Your brand" />
               </motion.span>
 
               {/* deserves to */}
-              <motion.span
-                variants={item}
-                className="block"
-              >
+              <motion.span variants={item} className="block">
                 <InteractiveText text="Deserves to" />
               </motion.span>
 
@@ -363,21 +341,17 @@ export function Hero() {
               >
                 <InteractiveText text="Be seen." />
               </motion.span>
-
             </h1>
 
             {/* ========================================
                 DESCRIPTION
             ======================================== */}
 
-            <motion.div
-              variants={item}
-              className="mt-9 max-w-xl"
-            >
+            <motion.div variants={item} className="mt-9 max-w-xl">
               <p className="text-base leading-relaxed text-white/60 sm:text-lg">
-                We build bold identities, memorable packaging,
-                powerful signage, and print experiences that
-                help your business stand out in the real world.
+                Adobzone provides branding, graphic design, printing, packaging,
+                signage, and custom print solutions that help businesses stand
+                out.
               </p>
             </motion.div>
 
@@ -389,16 +363,13 @@ export function Hero() {
               variants={item}
               className="mt-10 flex flex-wrap items-center gap-6"
             >
-
               {/* Primary button */}
 
               <a
                 href="#services"
                 className="group inline-flex items-center gap-4 rounded-full bg-[var(--color-highlight)] px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-black transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(249,133,28,0.35)]"
               >
-                <span>
-                  Explore our work
-                </span>
+                <span>Explore our work</span>
 
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
                   <ArrowRight size={16} />
@@ -414,11 +385,9 @@ export function Hero() {
                 className="group inline-flex items-center gap-3 text-xs font-medium uppercase tracking-[0.14em] text-white/60 transition-colors duration-300 hover:text-white"
               >
                 <span className="h-2 w-2 rounded-full bg-[var(--color-highlight)] transition-transform duration-300 group-hover:scale-150" />
-
                 WhatsApp us
               </a>
             </motion.div>
-
           </motion.div>
 
           {/* ========================================
@@ -426,7 +395,6 @@ export function Hero() {
           ======================================== */}
 
           <AnimatedHeroText />
-
         </div>
       </Container>
 
@@ -435,15 +403,6 @@ export function Hero() {
       ======================================== */}
 
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black to-transparent" />
-
-      {/* ========================================
-          BRAND MARK
-      ======================================== */}
-
-      <div className="pointer-events-none absolute bottom-8 right-8 hidden text-[0.6rem] uppercase tracking-[0.3em] text-white/20 lg:block">
-        ADOBZONE®
-      </div>
-
     </section>
   );
 }

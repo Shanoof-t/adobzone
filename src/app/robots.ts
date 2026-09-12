@@ -6,6 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://adobzone.vercel.app/sitemap.xml",
+
+    sitemap: "https://www.adobzone.com/sitemap.xml",
   };
 }
