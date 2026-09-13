@@ -127,9 +127,9 @@ function AnimatedHeroText() {
     >
       <div className="relative w-full max-w-lg">
         {/* Background number */}
-        <div className="pointer-events-none absolute -right-8 -top-20 select-none text-[12rem] font-bold leading-none tracking-[-0.08em] text-white/[0.025]">
+        {/* <div className="pointer-events-none absolute -right-8 -top-20 select-none text-[12rem] font-bold leading-none tracking-[-0.08em] text-white/[0.025]">
           01
-        </div>
+        </div> */}
 
         <div className="relative">
           {/* Small label */}
@@ -403,6 +403,24 @@ export function Hero() {
       ======================================== */}
 
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black to-transparent" />
+
+          <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1 }}
+              className="absolute bottom-8 left-1/2 -translate-x-1/2 sm:bottom-10"
+            >
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{
+                  duration: 1.8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="h-7 w-[1px] sm:h-9"
+                style={{ backgroundColor: "var(--color-highlight)" }}
+              />
+            </motion.div>
     </section>
   );
 }
