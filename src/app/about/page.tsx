@@ -9,6 +9,7 @@ import { StarsGalaxy } from "@/components/ui/StarsGalaxy";
 import AboutSection from "@/components/sections/AboutSection";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
 import { ClientsSection } from "@/components/sections/ClientsSection";
+import ContactSection from "@/components/sections/ContactSection";
 
 const WORDS = ["brands.", "identities.", "campaigns.", "stories."];
 
@@ -145,6 +146,7 @@ export default function AboutPage() {
       <AboutSection />
       <ServicesGrid />
       <ClientsSection />
+      <ContactSection />    
     </main>
   );
 }

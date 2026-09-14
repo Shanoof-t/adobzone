@@ -1,5 +1,5 @@
 import  AboutSection  from "@/components/sections/AboutSection";
-import { ClientsSection } from "@/components/sections/ClientsSection";
+import ContactSection from "@/components/sections/ContactSection";
 import { Hero } from "@/components/sections/Hero";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
 
@@ -8,8 +8,8 @@ export default function Home() {
     <>
       <Hero />
       <AboutSection />
-      <ServicesGrid />
-      <ClientsSection />
+      <ServicesGrid />    
+      <ContactSection />    
     </>
   );
 }

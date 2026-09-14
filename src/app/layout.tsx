@@ -6,6 +6,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 import "./globals.css";
+import { Footer } from "@/components/layout/Footer";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -124,6 +125,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Navbar />
 
         {children}
+        <Footer />
       </body>
     </html>
   );
