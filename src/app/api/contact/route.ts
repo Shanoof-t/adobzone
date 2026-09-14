@@ -93,6 +93,14 @@ async function submitToGoogleAppsScript(
       };
     }
 
+     if (googleResponse.status === 200) {
+      return {
+        googleResponse,
+        responseText,
+        attemptName: attempt.name,
+      };
+    }
+
     lastError = {
       status: googleResponse.status,
       url: googleResponse.url,
